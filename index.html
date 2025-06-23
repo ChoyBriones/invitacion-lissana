@@ -51,6 +51,30 @@
       border: none;
       border-radius: 12px;
     }
+	
+	#countdown {
+      font-size: 1.5em;
+      margin-top: 10px;
+      color: #ff66b2;
+    }
+	
+	button, a#whatsappButton {
+	  display: inline-block;
+	  background-color: #ff66b2;
+	  color: #fff;
+	  text-decoration: none;
+	  border: none;
+	  padding: 15px 25px;
+	  margin: 10px 5px;
+	  border-radius: 30px;
+	  font-size: 1em;
+	  cursor: pointer;
+	  transition: background-color 0.3s;
+	}
+
+	button:hover, a#whatsappButton:hover {
+	  background-color: #e0559d;
+	}
   </style>
 </head>
 <body>
@@ -66,15 +90,19 @@
   <div id="inv" class="section active">
     <img src="7a9490df-770f-49f0-b8e9-6e96fb1ae2e8.png" alt="Hello Kitty">
     <p><strong>¡Hola! Soy Lissana y te invito a celebrar mi cumpleaños número 6.</strong></p>
-    <p>🗓️ Fecha: 8 de agosto<br>
+    <p>🗓️ Fecha: 9 de agosto<br>
        🕒 Hora: 3:00 PM<br>
        📍 Lugar: Salón de Fiestas Fantasía<br>
-       Dirección: Alejandro Ugarte 216, Col. Altavista</p>
+       Dirección: Liverpool #901 Esquina con Versalles, Del Valle Segunda Sección</p>
+	<p>Solo Faltan...</p>
+	<div id="countdown"></div>
+	<p>Si te es posible confirma tu asistencia</p>
+	<a id="whatsappButton" href="#" target="_blank">Confirmar por WhatsApp</a>
   </div>
 
   <div id="comida" class="section">
     <img src="83ba380e-f608-48f3-b8da-da500a7debd7.png" alt="Hello Kitty">
-    <p>En esta ocasion comeremos Hotdogs, asi que llega temprano antes de que se acaben.</p>
+    <p>¡En esta ocasion comeremos unos ricos Hotdogs!, ¡Asi que llega temprano antes de que se acaben! Tendremos tambien refrescos y aguas frescas.</p>
   </div>
 
   <div id="recomendaciones" class="section">
@@ -84,13 +112,18 @@
   
   <div id="fotos" class="section">
     <img src="b6353970-295c-4a35-9870-275cdd0e1b33.png" alt="Hello Kitty">
-    <p>Fotos!!</p>
+    <p>Dale un vistazo al Salón</p>
+	<img src="474378130_9568242146539821_3323513081707907721_n.jpg" alt="Hello Kitty">
+	<img src="472811668_1330954964479287_5899092936288040035_n.jpg" alt="Hello Kitty">
+	<img src="471688024_612249158121993_4164596385199541940_n.jpg" alt="Hello Kitty">
+	<img src="474620541_550769467925034_7343549445365449727_n.jpg" alt="Hello Kitty">
+	
   </div>
       
   <div id="map" class="section">
-	<img src="7a9490df-770f-49f0-b8e9-6e96fb1ae2e8.png" alt="Hello Kitty">
+	<img src="483c5b6f-6dab-422f-bd9a-78f819e5043a.png" alt="Hello Kitty">
 	<p>Da click en "Como llegar". Despues escribe tu ubicación y Google te dirá como llegar.</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.4259272570814!2d-102.29374928556367!3d21.88208778554009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee4185293e41%3A0xfbc0ffb55c5a83f0!2sAlejandro%20Ugarte%20216%2C%20Altavista%2C%2020200%20Aguascalientes%2C%20Ags.!5e0!3m2!1ses-419!2smx!4v1717527900000!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1100.7799963174543!2d-102.31977750427076!3d21.874200200580667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86c815c6ea91bb5d%3A0xcc0982eee3960d14!2sSal%C3%B3n%20de%20Fiestas%20Infantiles%20Fantasia!5e0!3m2!1sen!2sus!4v1750701581909!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 
   <script>
@@ -102,6 +135,28 @@
       document.getElementById('map').classList.remove('active');
       document.getElementById(id).classList.add('active');
     }
+	
+	// Conteo regresivo
+    const countdown = document.getElementById('countdown');
+    const eventDate = new Date('2025-08-09T15:00:00').getTime();
+    
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `${days} Dias, ${hours} Horas, ${minutes} Minutos, ${seconds} Segundos`;
+    }, 1000);
+
+	// Botón para confirmar por WhatsApp
+	const whatsappNumber = '524491013492'; // Reemplaza con tu número, ej: 5214491234567
+	const prefilledMessage = encodeURIComponent('¡Hola! Quiero confirmar mi asistencia al cumpleaños de Lissana 🎉✨');
+
+	document.getElementById('whatsappButton').href = `https://wa.me/${whatsappNumber}?text=${prefilledMessage}`;
   </script>
 </body>
 </html>
